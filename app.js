@@ -62,7 +62,7 @@ app.get("/about", async (req, res, next) => {
     await res.json({copyright:"2020, ahsan mubariz",datasource:'https://covid19.sulselprov.go.id/'});
 });
 
-app.get("/data", async (req, res, next) => {
+app.get("/statistik", async (req, res, next) => {
     var positifCount = {},e;
     positifCount["Positif - Meninggal"]=positifWafat.length
     for (var i = 0,l=positif.length; i < l; i++) { 
@@ -80,4 +80,23 @@ app.get("/data", async (req, res, next) => {
         pdpCount[e.properties.title] = (pdpCount[e.properties.title] || 0) + 1;
     }
     await res.json({odp:odpCount,positif:positifCount,pdp:pdpCount})
+});
+
+app.get("/data", async (req, res, next) => {
+    var sPositif = {},e;
+    for (var i = 0,l=positif.length; i < l; i++) { 
+        e = positif[i];
+        sPositif = sPositif[e] || 0) + 1;
+    }
+    var odpCount = {},e;
+    for (var i = 0,l=ODP.length; i < l; i++) { 
+        e = ODP[i];
+        odpCount[e.properties.title] = (odpCount[e.properties.title] || 0) + 1;
+    }
+    var pdpCount = {},e;
+    for (var i = 0,l=pdp.length; i < l; i++) { 
+        e = pdp[i];
+        pdpCount[e.properties.title] = (pdpCount[e.properties.title] || 0) + 1;
+    }
+    await res.json({odp:odpCount,positif:sPositif,pdp:pdpCount})
 });
