@@ -5,7 +5,7 @@ const cron = require('node-cron')
 const app = express()
 
 app.listen(port, () => {
- console.log("Server running on port 3000, created by ahsan mubariz");
+ console.log("Server running on port 3000");
 });
 
 let datayya, ODP, pdp, positif, rujukan,positifWafat,pdpWafat
@@ -46,13 +46,13 @@ request({
 
     
 
-app.get("/", (req, res, next) => {
-    res.json({createdby:"2020- ahsan mubariz",datasource:'https://covid19.sulselprov.go.id/',documentation:'read https://github.com/ahsanmubariz/covid19sulselapi.git'});
-});
-app.get("/datakab", async (req, res, next) => {
+// app.get("/", (req, res, next) => {
+//     res.json({createdby:"2020- ahsan mubariz",datasource:'https://covid19.sulselprov.go.id/',documentation:'read https://github.com/ahsanmubariz/covid19sulselapi.git'});
+// });
+app.get("/kab", async (req, res, next) => {
     await res.json({result:datayya});
 });
-app.get("/datasebaran", async (req, res, next) => {
+app.get("/all", async (req, res, next) => {
     await res.json({odp:ODP,pdp:pdp,positif:positif,positifWafat:positifWafat});
 });
 app.get("/rujukan", async (req, res, next) => {
@@ -62,7 +62,7 @@ app.get("/about", async (req, res, next) => {
     await res.json({copyright:"2020, ahsan mubariz",datasource:'https://covid19.sulselprov.go.id/'});
 });
 
-app.get("/statistik", async (req, res, next) => {
+app.get("/data", async (req, res, next) => {
     var positifCount = {},e;
     positifCount["Positif - Meninggal"]=positifWafat.length
     for (var i = 0,l=positif.length; i < l; i++) { 
