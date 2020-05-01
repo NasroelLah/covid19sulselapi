@@ -50,7 +50,7 @@ request({
 //     res.json({createdby:"2020- ahsan mubariz",datasource:'https://covid19.sulselprov.go.id/',documentation:'read https://github.com/ahsanmubariz/covid19sulselapi.git'});
 // });
 app.get("/kab", async (req, res, next) => {
-    await res.json({datayya});
+    await res.json({result:datayya});
 });
 app.get("/all", async (req, res, next) => {
     await res.json({odp:ODP,pdp:pdp,positif:positif,positifWafat:positifWafat});
