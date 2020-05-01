@@ -83,5 +83,5 @@ app.get("/statistik", async (req, res, next) => {
 });
 
 app.get("/data", async (req, res, next) => {
-    await res.json({positif:positif.length})
+    await res.json({odp:ODP.length, pdp:pdp.length, positif:positif.length})
 });
